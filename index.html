@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>Blog</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+        <link href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Blog Atom Feed" />
+
+        <!--[if IE]>
+            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">Blog </a></h1>
+                <nav><ul>
+                    <li><a href="/category/misc.html">misc</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+            <aside id="featured" class="body">
+                <article>
+                    <h1 class="entry-title"><a href="/using-vagrant-with-openstack.html">Using Vagrant with OpenStack</a></h1>
+<footer class="post-info">
+        <abbr class="published" title="2017-06-30T11:35:24-04:00">
+                Published: Fri 30 June 2017
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/jack-feser.html">Jack Feser</a>
+        </address>
+<p>In <a href="/category/misc.html">misc</a>.</p>
+
+</footer><!-- /.post-info --><p>Vagrant is one of my favorite development tools.
+It helps me keep track of my development environment and package it up in a way that my collaborators can use.
+Normally, I've used Vagrant to provision a virtual machine that I run locally. This saves me from trouble with difficult to build packages (the big offender used to be Z3).</p>
+<p>Recently, my research has been on a tool for synthesizing database queries. I have several databases for running experiments, some large and some small.
+For one-off tests, it's fine to run on my local machine, and this is what I do when developing, but for benchmarking I want to run many tests and maybe run many iterations of each test.
+In this case, it's easier to use a a remote server that I can leave running overnight.</p>
+<p>Some of my grad student friends use EC2 for running benchmarks, but MIT has its own OpenStack deployment (and the servers are free for CSAIL students!).
+Since I use Vagrant anyway, I wanted to use Vagrant to provision my OpenStack server.</p>
+<p>This is the configuration that I'm using for the MIT OpenStack.
+First, you'll need to install the OpenStack plugin with <code>vagrant plugin install vagrant-openstack-provider</code>.
+Then, add an OpenStack provider to your Vagrantfile as follows:</p>
+<div class="highlight"><pre><span></span><span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">provider</span> <span class="ss">:openstack</span> <span class="k">do</span> <span class="o">|</span><span class="n">os</span><span class="o">|</span>
+  <span class="n">os</span><span class="o">.</span><span class="n">openstack_auth_url</span> <span class="o">=</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;OS_AUTH_URL&#39;</span><span class="o">]</span>
+  <span class="n">os</span><span class="o">.</span><span class="n">username</span> <span class="o">=</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;OS_USERNAME&#39;</span><span class="o">]</span>
+  <span class="n">os</span><span class="o">.</span><span class="n">password</span> <span class="o">=</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;OS_PASSWORD&#39;</span><span class="o">]</span>
+  <span class="n">os</span><span class="o">.</span><span class="n">tenant_name</span> <span class="o">=</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;OS_TENANT_NAME&#39;</span><span class="o">]</span>
+  <span class="n">os</span><span class="o">.</span><span class="n">project_name</span> <span class="o">=</span> <span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;OS_PROJECT_NAME&#39;</span><span class="o">]</span>
+  <span class="n">os</span><span class="o">.</span><span class="n">flavor</span> <span class="o">=</span> <span class="s2">&quot;m2.8core&quot;</span>
+  <span class="n">os</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="s2">&quot;Ubuntu-16.10-amd64&quot;</span>
+  <span class="n">os</span><span class="o">.</span><span class="n">availability_zone</span> <span class="o">=</span> <span class="s2">&quot;nova&quot;</span>
+  <span class="n">os</span><span class="o">.</span><span class="n">security_groups</span> <span class="o">=</span> <span class="o">[</span><span class="s2">&quot;default&quot;</span><span class="p">,</span> <span class="s2">&quot;timxu-public&quot;</span><span class="o">]</span>
+<span class="k">end</span>
+</pre></div>
+
+
+<p>You may want to configure the <code>os.flavor</code>, <code>os.image</code>, and <code>os.security_groups</code> variables.
+Access credentials are provided to Vagrant as environment variables.
+Luckily, OpenStack provides a handy script to set these variables for you.
+Under the "Access &amp; Security" tab, go to the "API Access" tab and download the "OpenStack RC File".
+Just run <code>source *-openrc.sh</code> before running a Vagrant command.
+Remember not to check it into source control!</p>
+<p>There's a final trick that I found convenient.
+I already have my local virtual machine set up in Vagrant, and I'd like to avoid duplicating that configuration.
+By using Vagrant's support for multi-machine provisioning, I can share the two configurations as follows:</p>
+<div class="highlight"><pre><span></span><span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">define</span> <span class="ss">:local</span><span class="p">,</span> <span class="ss">primary</span><span class="p">:</span> <span class="kp">true</span><span class="p">,</span> <span class="ss">autostart</span><span class="p">:</span> <span class="kp">false</span> <span class="k">do</span> <span class="o">|</span><span class="n">conf</span><span class="o">|</span>
+  <span class="n">conf</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">box</span> <span class="o">=</span> <span class="s2">&quot;ubuntu/yakkety64&quot;</span>
+
+  <span class="n">conf</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">provider</span> <span class="ss">:virtualbox</span> <span class="k">do</span> <span class="o">|</span><span class="n">v</span><span class="o">|</span>
+    <span class="n">v</span><span class="o">.</span><span class="n">memory</span> <span class="o">=</span> <span class="mi">4096</span>
+    <span class="n">v</span><span class="o">.</span><span class="n">cpus</span> <span class="o">=</span> <span class="mi">2</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="n">config</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">define</span> <span class="ss">:remote</span><span class="p">,</span> <span class="ss">autostart</span><span class="p">:</span> <span class="kp">false</span> <span class="k">do</span> <span class="o">|</span><span class="n">conf</span><span class="o">|</span>
+  <span class="n">conf</span><span class="o">.</span><span class="n">vm</span><span class="o">.</span><span class="n">provider</span> <span class="ss">:openstack</span> <span class="k">do</span> <span class="o">|</span><span class="n">os</span><span class="o">|</span>
+    <span class="c1"># OpenStack configuration.</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</pre></div>
+
+
+<p>Now I can run <code>vagrant up local</code> to start my local VM and <code>vagrant up remote</code> to start my OpenStack VM.</p>                </article>
+            </aside><!-- /#featured -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
