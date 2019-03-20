@@ -22,7 +22,7 @@ h2 {
 }
 
 #header-box {
-  display: flex;
+    display: flex;
 }
 
 #contact-box {
@@ -31,4 +31,5 @@ h2 {
 
 #profile-box {
   flex: 0 0 30%;
+  padding: 0px 25px 25px 25px;
 }
