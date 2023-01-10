@@ -10,6 +10,6 @@ pubs.html: pubs.bib
 	bibtex2html -s acm -d -r -nofooter -nodoc pubs.bib
 
 publish: index.html
-	scp *.html *.css *.pdf *.jpg sketch3.csail.mit.edu:/scratch/feser/www/
+	export SSHPASS=`secret-tool lookup user feser host csail.mit.edu`; sshpass -r 2 -e -v rsync -v *.html *.css *.pdf *.jpg feser@sketch2.csail.mit.edu:public_html/
 
 FORCE: ;

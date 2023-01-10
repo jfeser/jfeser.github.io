@@ -25,6 +25,13 @@
       </p>
       <p>My research interests are in automated program synthesis and performance engineering, with a focus on synthesizing high performance software that is specialized to a workload.
       </p>
+
+      <h2>New Course: Programming Language Design</h2>
+      <p>
+        Check out the (still WIP!) <a href="/feser/pld2023">course website</a>!
+      </p>
+
+
       <h2>Publications</h2>
       include(`pubs.html')
 
