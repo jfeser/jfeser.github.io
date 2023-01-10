@@ -28,15 +28,13 @@
       <h2>Publications</h2>
       include(`pubs.html')
 
-      <h2>Software</h2>
+      <h2>Teaching</h2>
       <div>
-        <p><b>Castor</b>: A tool for deductively synthesizing custom physical layouts for read-only databases.  [<a href="https://github.com/jfeser/castor">repository</a>]</p>
-        <p><b>ImputeDB</b>: A database with automatic dynamic imputation of missing values.  [<a href="https://github.com/mitdbg/imputedb">repository</a>]</p>
-        <p><b>λ<sup>2</sup></b>: A tool for synthesizing functional programs from input-output examples. [<a href="https://github.com/jfeser/L2">repository</a>]</p>
-        <p><b>combinat</b>: Fast iterators over combinatorial objects for OCaml. [<a href="https://github.com/jfeser/combinat">repository</a>]</p>
-        <p><b>ocaml-cmph</b>: OCaml bindings for the CMPH minimal perfect hashing library. [<a href="https://github.com/jfeser/ocaml-cmph">repository</a>]</p>
-        <p><b>odoc2docset</b>: Tool for generating Dash docsets from Odoc generated documentation. [<a href="https://github.com/jfeser/odoc2docset">repository</a>]</p>
+        <p><b>Recitation Instructor, <a href="http://web.mit.edu/6.033/www/">MIT 6.033</a></b>. Spring 2021, 2022. Responsible for teaching two twice-weekly sections. In each class, students discuss an influential paper from the field of computer systems. These classes make extensive use of active learning techniques to augment traditional lecture based instruction.</p>
+        <p><b><a href="https://tll.mit.edu/programming/grad-student-programming/kaufman-teaching-certificate-program/">Kaufman Teaching Certificate Program</a></b>. Spring 2022. Completed a semester-long workshop program on teaching techniques, including course design and evidence-based methods of instruction.</p>
+        <p><b>Course Development, <a href="https://ocw.mit.edu/courses/6-820-fundamentals-of-program-analysis-fall-2015/">MIT 6.820</a></b>. Fall 2021. Developed two new problem sets for Fundamentals of Program Analysis; one problem set on verification and loop invariants and one on abstract interpretation. 6.820 is an upper level programming languages course that gives students a practical introduction to program analysis. Grading is based entirely on six problem sets that students complete during the course.</p>
       </div>
+
       <h2>Professional Experience</h2>
       <div>
         <p><b>Internship at Aarno Labs (Cambridge, MA)</b>. June 2018. Worked on a distributed system for neutralizing botnets in hostile networks.</p>
@@ -47,6 +45,16 @@
         <p>
           Teaching assistant for Comp 382 (Fall 2015), Comp 421 (Spring 2015, Spring 2016) at Rice University.
         </p>
+      </div>
+
+      <h2>Software</h2>
+      <div>
+        <p><b>Castor</b>: A tool for deductively synthesizing custom physical layouts for read-only databases.  [<a href="https://github.com/jfeser/castor">repository</a>]</p>
+        <p><b>ImputeDB</b>: A database with automatic dynamic imputation of missing values.  [<a href="https://github.com/mitdbg/imputedb">repository</a>]</p>
+        <p><b>λ<sup>2</sup></b>: A tool for synthesizing functional programs from input-output examples. [<a href="https://github.com/jfeser/L2">repository</a>]</p>
+        <p><b>combinat</b>: Fast iterators over combinatorial objects for OCaml. [<a href="https://github.com/jfeser/combinat">repository</a>]</p>
+        <p><b>ocaml-cmph</b>: OCaml bindings for the CMPH minimal perfect hashing library. [<a href="https://github.com/jfeser/ocaml-cmph">repository</a>]</p>
+        <p><b>odoc2docset</b>: Tool for generating Dash docsets from Odoc generated documentation. [<a href="https://github.com/jfeser/odoc2docset">repository</a>]</p>
       </div>
   </body>
 </html>
