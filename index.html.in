@@ -1,34 +1,44 @@
 <!DOCTYPE html5>
 <html lang="en">
   <head>
-    <title>John K. Feser</title>
+    <title>Jack Feser</title>
     <link rel="stylesheet" type="text/css" href="main.css">
     <meta charset="UTF-8">
   </head>
   <body>
     <div class="page">
-      <h1>John K. Feser</h1>
+      <h1>Jack Feser</h1>
       <div id="header-box">
         <div id="profile-box">
           <img src="profile.jpg" id="profile" alt="Profile picture">
         </div>
         <div id="contact-box">
-          Email: feser at csail.mit.edu<br>
-          Office: 32-G716<br>
+          Email: jfeser at hamilton.edu<br>
+          Office: Taylor Science Center 3005<br>
           <a href="https://github.com/jfeser">Github</a><br>
           <a href="https://www.linkedin.com/in/jfeser">LinkedIn</a><br>
           <a href="https://scholar.google.com/citations?user=ff2r-x0AAAAJ&hl=en">Google Scholar</a>
         </div>
       </div>
       <p>
-        I am a PhD student at <a href="https://www.csail.mit.edu/">MIT CSAIL</a>, working with <a href="https://people.csail.mit.edu/asolar/">Armando Solar Lezama</a>. I received my Undergraduate and Master's degrees from <a href="http://www.rice.edu/">Rice University</a>, where I worked with <a href="https://www.cs.rice.edu/~sc40/">Swarat Chaudhuri</a>.
+        I am an Assistant Professor at <a href="https://www.hamilton.edu/academics/departments/Computer-Science">Hamilton College</a>. I received my Undergraduate and Master's degrees from <a href="http://www.rice.edu/">Rice University</a>, where I worked with <a href="https://www.cs.rice.edu/~sc40/">Swarat Chaudhuri</a> and my PhD from MIT, where I worked with <a href="https://people.csail.mit.edu/asolar/">Armando Solar Lezama</a>.
       </p>
       <p>My research interests are in automated program synthesis and performance engineering, with a focus on synthesizing high performance software that is specialized to a workload.
       </p>
 
-      <h2>New Course: Programming Language Design</h2>
+      <h2>News</h2>
       <p>
-        Check out the (still WIP!) <a href="/feser/pld2023">course website</a>!
+        <ul>
+          <li>
+            <b>August 2023</b>: My paper "Inductive Program Synthesis Guided by Observational Program Similarity," coauthored with Armando Solar-Lezama and Isil Dillig, has been accepted to OOPSLA 2023!
+          </li>
+          <li>
+            <b>May 2023</b>: I finished my PhD, and I'll be joining Hamilton College as a faculty member in the fall!
+          </li>
+          <li>
+            <b>January 2023</b>: I am teaching a new course on programming language design at MIT. Check out the (still WIP!) <a href="/feser/pld-s23">course website</a>!
+          </li>
+        </ul>
       </p>
 
 
@@ -37,6 +47,7 @@
 
       <h2>Teaching</h2>
       <div>
+        <p><b>Instructor, <a href="https://people.csail.mit.edu/feser/">MIT 6.S050</a></b>. Spring 2023. Building a new course on programming language design, along with Armando Solar-Lezama and Michael Carbin!</p>
         <p><b>Recitation Instructor, <a href="http://web.mit.edu/6.033/www/">MIT 6.033</a></b>. Spring 2021, 2022. Responsible for teaching two twice-weekly sections. In each class, students discuss an influential paper from the field of computer systems. These classes make extensive use of active learning techniques to augment traditional lecture based instruction.</p>
         <p><b><a href="https://tll.mit.edu/programming/grad-student-programming/kaufman-teaching-certificate-program/">Kaufman Teaching Certificate Program</a></b>. Spring 2022. Completed a semester-long workshop program on teaching techniques, including course design and evidence-based methods of instruction.</p>
         <p><b>Course Development, <a href="https://ocw.mit.edu/courses/6-820-fundamentals-of-program-analysis-fall-2015/">MIT 6.820</a></b>. Fall 2021. Developed two new problem sets for Fundamentals of Program Analysis; one problem set on verification and loop invariants and one on abstract interpretation. 6.820 is an upper level programming languages course that gives students a practical introduction to program analysis. Grading is based entirely on six problem sets that students complete during the course.</p>
